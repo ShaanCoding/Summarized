@@ -1,4 +1,4 @@
-gcs_uri = "gs://video_storage_314/yt1s.com - 1 Introduction and Supply  Demand_v144P.mp4"
+gcs_uri = "gs://video_storage_314/snd.opus"
 
 def transcribe_gcs(gcs_uri):
     """Asynchronously transcribes the audio file specified by the gcs_uri."""
@@ -8,7 +8,7 @@ def transcribe_gcs(gcs_uri):
 
     audio = speech.RecognitionAudio(uri=gcs_uri)
     config = speech.RecognitionConfig(
-        encoding=speech.RecognitionConfig.AudioEncoding.FLAC,
+        encoding=speech.RecognitionConfig.AudioEncoding.OGG_OPUS,
         sample_rate_hertz=16000,
         language_code="en-US",
     )
@@ -16,7 +16,7 @@ def transcribe_gcs(gcs_uri):
     operation = client.long_running_recognize(config=config, audio=audio)
 
     print("Waiting for operation to complete...")
-    response = operation.result(timeout=2100)
+    response = operation.result(timeout=1000)
 
     # Each result is for a consecutive portion of the audio. Iterate through
     # them to get the transcripts for the entire audio file.
