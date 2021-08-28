@@ -1,0 +1,97 @@
+.navbar {
+  width: 100%;
+  height: 85px;
+  background: #252525;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar > div {
+  margin: 0px 25%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.navbar > div > div {
+  display: flex;
+  width: 100%;
+}
+
+.navbar > div > div > div {
+  margin: 20px;
+}
+
+.navbar h2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.navbar a {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 33px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  opacity: 0.6;
+}
+
+.footer {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer > div {
+  padding: 100px;
+}
+
+.footer > div > div {
+  padding: 15px 0px;
+}
+
+.footer p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  /* identical to box height, or 167% */
+
+  letter-spacing: -0.5px;
+
+  color: #0f2137;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer li {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 250%;
+  /* or 35px */
+
+  color: #02073e;
+
+  opacity: 0.8;
+}
