@@ -1,17 +1,19 @@
 import React from "react";
-import Timer from "../Images/timer.svg";
 
-const IndexExcitingFeatures: React.FC<{ title: string; description: string }> =
-  (props) => {
-    return (
+const IndexExcitingFeatures: React.FC<{
+  title: string;
+  description: string;
+  icon: any;
+}> = (props) => {
+  return (
+    <div>
       <div>
-        <div>
-          <img src={Timer} />
-        </div>
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
+        <img src={props.icon} />
       </div>
-    );
-  };
+      <h2>{props.title}</h2>
+      <p>{props.description}</p>
+    </div>
+  );
+};
 
 export default IndexExcitingFeatures;

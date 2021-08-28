@@ -52,6 +52,7 @@
 }
 
 .quality-features {
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -142,7 +143,7 @@
 /* Start of exciting new features */
 
 .exciting-new-features {
-  margin-top: 80px;
+  margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;

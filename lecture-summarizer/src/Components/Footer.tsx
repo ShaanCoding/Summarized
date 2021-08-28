@@ -8,11 +8,8 @@ const Footer = () => {
           <p>About Us</p>
         </div>
         <ul>
-          <li>Support Center</li>
-          <li>Customer Support</li>
           <li>About Us</li>
           <li>Copyright</li>
-          <li>Popular Campaign</li>
         </ul>
       </div>
       <div>
@@ -20,11 +17,7 @@ const Footer = () => {
           <p>Our Information</p>
         </div>
         <ul>
-          <li>Return Policy</li>
-          <li>Privacy Policy</li>
           <li>Terms & Conditions</li>
-          <li>Site Map</li>
-          <li>Store Hours</li>
         </ul>
       </div>
       <div>
@@ -32,10 +25,7 @@ const Footer = () => {
           <p>My Account</p>
         </div>
         <ul>
-          <li>Press Inquiries</li>
           <li>Social Media</li>
-          <li>Directories</li>
-          <li>Images & B-Roll</li>
           <li>Permissions</li>
         </ul>
       </div>
