@@ -14,6 +14,9 @@ import Tag from "../Components/Tag";
 import TitleProp from "../Components/TitleProp";
 
 const SummarizedVideo: React.FC<{ match: any }> = (props) => {
+  let videoURL =
+    "http://easyhtml5video.com/assets/video/new/Penguins_of_Madagascar.mp4";
+
   console.log(props.match.params.id);
 
   const [keywords, setKeywords] = useState<string[]>([]);
@@ -51,6 +54,10 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
           description="Our Lecture Summarizer Extracts Videos Into Meaningful and Important Portions Of Information and Summarizes Content For You"
         />
 
+        <div className="center-video">
+          <video src={videoURL} autoPlay={false} controls={true} />
+        </div>
+
         <div>
           <h2>Upload Video</h2>
           <div className="tag-grid">
@@ -59,7 +66,6 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             })}
           </div>
         </div>
-
         <div>
           <h2>Summarized Notes</h2>
           <div className="summarized-notes">
@@ -72,7 +78,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             })}
           </div>
         </div>
-
+        
         <InlineFlexbox>
           <div className="button">
             {/* <Link to={ankiFlashCard} download="Anki" target="_blank"> */}
@@ -80,6 +86,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             {/* </Link> */}
           </div>
         </InlineFlexbox>
+      
       </Content>
 
       <Footer />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { uploadVideo } from "../API/Requests";
 import Buttons from "../Components/Buttons";
 import Content from "../Components/Content";
 import Footer from "../Components/Footer";
@@ -10,6 +11,8 @@ const UploadVideo = () => {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFilePicked, setIsFiledPicked] = useState(false);
 
+  const fileInput = React.createRef<HTMLInputElement>();
+
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
 
@@ -20,6 +23,7 @@ const UploadVideo = () => {
 
   const handleSubmission = () => {
     setIsFiledPicked(true);
+    uploadVideo(selectedFile);
   };
 
   return (
@@ -36,18 +40,6 @@ const UploadVideo = () => {
           <div>
             <input type="file" name="file" onChange={changeHandler} />
           </div>
-        </div>
-
-        <div>
-          {isFilePicked ? (
-            <>
-              <p>Filename: {selectedFile?.name}</p>
-              <p>Filetype: {selectedFile?.type}</p>
-              <p>Size in bytes: {selectedFile?.size}</p>
-            </>
-          ) : (
-            ""
-          )}
         </div>
 
         <InlineFlexbox>
