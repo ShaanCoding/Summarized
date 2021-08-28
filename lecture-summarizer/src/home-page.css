@@ -1,0 +1,195 @@
+.header {
+  background-image: url("./Images/Header.png");
+  height: 590px;
+  padding: 80px 200px;
+  display: flex;
+}
+
+.header > div {
+  width: 100%;
+}
+
+.header h1 {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 85px;
+  line-height: 100px;
+  /* or 118% */
+
+  letter-spacing: -2px;
+  color: #ffffff;
+}
+
+.header p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 42px;
+  /* or 233% */
+  color: #ffffff;
+  padding-right: 320px;
+}
+
+.header button {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  color: #ffffff;
+
+  background-color: transparent;
+  border: 2px #ffffff solid;
+  border-radius: 50px;
+  padding: 20px 80px;
+}
+
+.header button:hover {
+  opacity: 0.8;
+}
+
+.quality-features {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 128px;
+}
+
+.quality-features > div {
+  width: 100%;
+}
+
+.quality-features > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quality-features h2 {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 30px;
+  /* identical to box height, or 167% */
+
+  text-align: center;
+  color: #0f2137;
+}
+
+.quality-features p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 28px;
+  /* or 187% */
+
+  text-align: center;
+  color: #343d48;
+}
+
+.how-it-works {
+  padding-top: 90px;
+  background-image: url("./Images/Background.png");
+  height: 770px;
+  margin-bottom: 128px;
+}
+
+.how-it-works h2 {
+  color: #ffffff;
+}
+
+.how-it-works h1 {
+  color: #ffffff;
+}
+
+.how-it-works h3 {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 155%;
+  /* or 34px */
+  color: #ffffff;
+  align-items: center;
+}
+
+.how-it-works p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 26px;
+  /* or 173% */
+  color: #ffffff;
+  opacity: 0.65;
+}
+
+.how-it-works-flex {
+  padding: 0px 20%;
+  display: flex;
+}
+
+.how-it-works-flex > div {
+  padding: 25px;
+  width: 100%;
+}
+
+/* Start of exciting new features */
+
+.exciting-new-features {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.exciting-new-features > div {
+  width: 100%;
+  display: flex;
+}
+
+.exciting-new-features > div > div {
+  width: 100%;
+}
+
+.exciting-new-features h3 {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  color: #0f2137;
+  margin: 0px;
+}
+
+.exciting-new-features p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 26px;
+  /* or 173% */
+  color: #343d48;
+}
+
+.exciting-new-features-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exciting-new-features > div {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* End of exciting new features */
