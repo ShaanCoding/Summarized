@@ -1,6 +1,19 @@
 import json
+import sys
 
-def transcribe_gcs(gcs_uri, timeout=1000):
+"""
+    NEEDS TO BE DONE BEFORE RUNNING:
+        1. export GOOGLE_APPLICATION_CREDENTIALS="some_path/.../video-to-text-324211-dfded3aa3010.json" 
+        2. you need to have uploaded the video file to a bucket and have its gsc_uri
+
+    EXPECTED TO BE RUN LINE THIS:
+        python video_to_text.py gs://video_storage_314/video.flac
+
+    OUTPUTS:
+        video_transcript.json in text_data folder
+"""
+
+def transcribe_gcs(gcs_uri, timeout=2100):
     """Asynchronously transcribes the audio file specified by the gcs_uri."""
     from google.cloud import speech
 
@@ -41,9 +54,20 @@ def export_to_json(response, path="output.json"):
 
 
 
-gcs_uri = "gs://video_storage_314/snd_trim_flac.flac"
-gcs_uri_2 = "gs://video_storage_314/snd_trim_20.flac"
-response = transcribe_gcs(gcs_uri_2)
+# gcs_uri = "gs://video_storage_314/snd_trim_flac.flac"
+# gcs_uri_2 = "gs://video_storage_314/snd_trim_20.flac"
+
+if len(sys.argv) > 1:
+    gcs_uri = sys.argv[1]
+else:
+    gcs_uri = "gs://video_storage_314/video.flac" #"gs://video_storage_314/snd_trim_20.flac"
+
+
+directory = "../text_data/"
+filename = "video_transcript.json"
+path = directory + filename
+print("Transcribing: " + gcs_uri)
+response = transcribe_gcs(gcs_uri)
 print("Finished transcription.")
-export_to_json(response, "long.json")
+export_to_json(response, path)
 
