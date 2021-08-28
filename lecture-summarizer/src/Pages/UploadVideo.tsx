@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router";
 import { uploadVideo } from "../API/Requests";
 import Buttons from "../Components/Buttons";
 import Content from "../Components/Content";
@@ -10,6 +11,7 @@ import TitleProp from "../Components/TitleProp";
 const UploadVideo = () => {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFilePicked, setIsFiledPicked] = useState(false);
+  const [uploadedVideo, setUploadedVideo] = useState(false);
 
   const fileInput = React.createRef<HTMLInputElement>();
 
@@ -24,11 +26,12 @@ const UploadVideo = () => {
 
   const handleSubmission = () => {
     setIsFiledPicked(true);
-    uploadVideo(selectedFile);
+    uploadVideo(setUploadedVideo, selectedFile);
   };
 
   return (
     <>
+      {(uploadedVideo ? (<Redirect to="/viewVideo" />) : "")}
       <NavBar />
 
       <Content>

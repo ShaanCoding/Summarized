@@ -22,6 +22,6 @@ def generate_question(paragraphs):
             data=json.dumps(payload),
             allow_redirects=True
         )
-        responses.append(r.json['generated_txt'])
+        responses.append(r.json()[0]['generated_text'])
 
     return responses

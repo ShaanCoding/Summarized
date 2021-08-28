@@ -54,7 +54,7 @@ export const fetchSummaryData = async (index: number) => {
 
 // Upload Video
 // If it doesn't work blames James W
-export const uploadVideo = async (data?: File) => {
+export const uploadVideo = async (setVideoFn: any, data?: File,) => {
   if (!data) return;
 
   const formData = new FormData();
@@ -64,8 +64,12 @@ export const uploadVideo = async (data?: File) => {
       "Content-Type": "application/octet-stream",
       "Content-Disposition": "attachment; filename=" + data.name,
     },
+  }).then((res) => {
+    if (res.data.status === 'success') {
+      setVideoFn(true);
+    }
   });
 
-  console.log(res.data);
-  return res.data;
+  // console.log(res.data);
+  // return res.data;
 };
