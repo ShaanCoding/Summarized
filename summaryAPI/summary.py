@@ -18,9 +18,6 @@ with open('video-to-text/output.json', 'r') as read:
 
 textReady = ' '.join(textToSummarise)
 
-textToWrite = {
-    textReady
-}
 
 print(textReady)
 
@@ -30,8 +27,8 @@ postHeaders = {'Content-type': 'application/json; charset=UTF-8',
                'Accept': 'application/json', 'Authorization': authHeaderVal}
 
 # Target size
-target = 'small'  # See docs for other options
-method = 'extractive'  # Or 'extractive'
+target = 'best'  # See docs for other options
+method = 'abstractive'  # Or 'extractive'
 payload = {'sumSrc': textReady, 'target': target, 'method': method}
 
 
