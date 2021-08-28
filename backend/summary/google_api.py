@@ -71,8 +71,18 @@ def transcribe_gcs(gcs_uri, timeout=2100):
     response = operation.result(timeout=timeout)
     return response
 
-def parse_response():
-    pass
+def parse_response(response):
+    rows = []
+    for res in response.results:
+        max_conf = 0
+        max_alt = ""
+        for alt in res.alternatives:
+            if alt.confidence > max_conf:
+                max_alt = alt.transcript
+        rows.append(max_alt)
+        
+    # convert to a json string or smth
+    return rows
 
 # TODO: We can have this export to a google cloud storage bucket if needed
 
