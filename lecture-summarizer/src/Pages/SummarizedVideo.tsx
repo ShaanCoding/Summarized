@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   fetchAnkiDeck,
+  fetchCurrentVideo,
   fetchKeywords,
   fetchSummarizedNotes,
 } from "../API/Requests";
@@ -14,14 +15,10 @@ import Tag from "../Components/Tag";
 import TitleProp from "../Components/TitleProp";
 
 const SummarizedVideo: React.FC<{ match: any }> = (props) => {
-  let videoURL =
-    "http://easyhtml5video.com/assets/video/new/Penguins_of_Madagascar.mp4";
-
-  console.log(props.match.params.id);
-
   const [keywords, setKeywords] = useState<string[]>([]);
   const [summarizedNotes, setSummarizedNotes] = useState<string[]>([]);
   const [ankiFlashCard, setAnkiFlashCard] = useState<string>();
+  const [currentVideo, setCurrentVideo] = useState<string>();
 
   useEffect(() => {
     const getKeywords = async () => {
@@ -39,9 +36,15 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
       setAnkiFlashCard(getAnkiDeckNotesFromServer.ankiFlashCards);
     };
 
+    const getCurrentVideo = async () => {
+      const getCurrentVideoFromServer = await fetchCurrentVideo();
+      setCurrentVideo(getCurrentVideoFromServer.currentVideo);
+    };
+
     getKeywords();
     getSummarizedNotes();
     getAnkiDeckNotes();
+    getCurrentVideo();
   }, []);
 
   return (
@@ -55,7 +58,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         />
 
         <div className="center-video">
-          <video src={videoURL} autoPlay={false} controls={true} />
+          <video src={currentVideo} autoPlay={false} controls={true} />
         </div>
 
         <div>
