@@ -6,6 +6,17 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
+"""
+    NEEDS TO BE DONE BEFORE RUNNING:
+        You need to have run the text_preproc.py file
+
+    EXPECTED TO BE RUN LINE THIS:
+        python keyword_extractor.py
+
+    OUTPUTS:
+        keywords.json in text_data folder
+"""
+
 def file_to_list(filename):
     with open(filename) as f:
         lines = [line.strip() for line in f]
@@ -51,9 +62,13 @@ def max_sum_sim(doc_embedding, word_embeddings, words, top_n, nr_candidates):
     return [words_vals[idx] for idx in candidate]
 
 
-# corpus = json_to_list('../video-to-text/long.json')
-# corpus = file_to_list('../video-to-text/long.txt')
-corpus = json_to_list('processed.json')
+directory = "../text_data/"
+in_filename = "processed_transcript.json"
+in_path = directory + in_filename
+out_filename = "keywords.json"
+out_path = directory + out_filename
+
+corpus = json_to_list(in_path)
 ng = 1
 top_n = 10
 nr_candidates = 20
@@ -70,5 +85,5 @@ candidate_embeddings = model.encode(candidates, show_progress_bar=True)
 mss = max_sum_sim(doc_embedding, candidate_embeddings, candidates, top_n, nr_candidates)
 
 
-with open("keywords.json", "w") as f:
+with open(out_path, "w") as f:
     json.dump(mss, f)
