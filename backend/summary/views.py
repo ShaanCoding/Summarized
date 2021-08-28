@@ -10,6 +10,7 @@ from summary.encoder import mp4_to_flac
 from summary import google_api
 from summary import summarize
 import time
+import json
 
 
 class GetOverview(APIView):
@@ -38,10 +39,17 @@ class SummarizeText(APIView):
             return Response(serializer.errors)
 
         # test
-        print(serializer.blob)
-        print(serializer.validated_data['blob'])
+        # print(serializer.blob)
+        blob_data = serializer.validated_data['blob']
 
-        summarize.summarize_text(serializer.blob, False)
+        summary = summarize.summarize_text(blob_data, False)
+        if summary:
+            return Response({
+                'status':'success',
+                'resposne': summary
+            })
+        else:
+            return Response({'status':'fail'})
 
 
 class UploadVideo(APIView):
@@ -79,12 +87,13 @@ class UploadVideo(APIView):
                                str(flac_h), google_api.DST_BLOB_NAME)
 
         time.sleep(5)
-
         transcription = google_api.transcribe_gcs(google_api.GCS_URI)
 
-        parsed_json = google_api.parse_response(transcription)
+        parsed_response = google_api.parse_response(transcription)
+        summaries = summarize.summarize_text(' '.join(parsed_response))
 
-        print(parsed_json)
+        # generate questions based on summaries
+        
 
         # cleanup
         default_storage.delete(video_file.name)

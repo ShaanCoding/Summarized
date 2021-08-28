@@ -82,7 +82,7 @@ def parse_response(response):
         rows.append(max_alt)
         
     # convert to a json string or smth
-    return json.dumps(rows)
+    return rows
 
 # TODO: We can have this export to a google cloud storage bucket if needed
 
