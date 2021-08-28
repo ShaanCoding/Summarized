@@ -1,7 +1,12 @@
 import axios from "axios";
 
 // Get Keywords
-let SERVER_URL = "http://localhost:5000";
+
+// custom server
+// let SERVER_URL = "http://localhost:5000";
+
+// django server
+let SERVER_URL = "http://127.0.0.1:8000/api";
 
 export const fetchKeywords = async () => {
   const res = await axios.get(`${SERVER_URL}/keywords`);
@@ -10,8 +15,8 @@ export const fetchKeywords = async () => {
 
 // Get Video List
 export const fetchVideoList = async () => {
-  const res = await axios.get(`${SERVER_URL}/videoList`);
-  return res.data;
+  const res = await axios.get(`${SERVER_URL}/overview/`);
+  return res.data.response;
 };
 
 // Get Summarized Notes
@@ -45,9 +50,10 @@ export const uploadVideo = async (data?: File) => {
 
   const formData = new FormData();
   formData.append(data.name, data);
-  const res = await axios.post(`${SERVER_URL}/upload`, data, {
+  const res = await axios.post(`${SERVER_URL}/upload-video/`, data, {
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/octet-stream",
+      "Content-Disposition": "attachment; filename=" + data.name,
     },
   });
 

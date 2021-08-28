@@ -1,8 +1,6 @@
 export interface IVideo {
   id: number;
-  videoName: string;
-  videoSummary: string;
-  duration: string;
+  name: string;
 }
 
 export interface IQuestionAnswer {
