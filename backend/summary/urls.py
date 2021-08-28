@@ -7,6 +7,7 @@ urlpatterns = [
     path('upload-flac', views.UploadFlac.as_view()),
     path('upload-video', views.UploadVideo.as_view()),
     path('summarize', views.SummarizeText.as_view()),
+    path('question', views.GenerateQuestion.as_view()),
      
     # Paths to-add:
     # path('add-summary', views.GetOverview.as_view())

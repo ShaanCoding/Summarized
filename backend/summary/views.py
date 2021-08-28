@@ -9,6 +9,7 @@ from summary.serializers import OverviewSerializer, SummarySerializer, BlobSeria
 from summary.encoder import mp4_to_flac
 from summary import google_api
 from summary import summarize
+from summary import questions
 import time
 import json
 
@@ -27,6 +28,25 @@ class GetOverview(APIView):
             'overview': serializer.data
         }, status=status.HTTP_200_OK)
 
+class GenerateQuestion(APIView):
+    """
+    Generates a question
+    """
+    def post(self, request, format=None):
+        serializer = BlobSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors)
+        
+        blob_data = serializer.validated_data['blob']
+        question = questions.generate_question([blob_data])
+
+        if question:
+            return Response({
+                'status':'success',
+                'response': question
+            })
+        else:
+            return Response({'status':'fail'})
 
 class SummarizeText(APIView):
     """
@@ -34,7 +54,6 @@ class SummarizeText(APIView):
     """
     def post(self, request, format=None):
         serializer = BlobSerializer(data=request.data)
-
         if not serializer.is_valid():
             return Response(serializer.errors)
 
@@ -46,7 +65,7 @@ class SummarizeText(APIView):
         if summary:
             return Response({
                 'status':'success',
-                'resposne': summary
+                'response': summary
             })
         else:
             return Response({'status':'fail'})
@@ -93,6 +112,7 @@ class UploadVideo(APIView):
         summaries = summarize.summarize_text(' '.join(parsed_response))
 
         # generate questions based on summaries
+
         
 
         # cleanup
