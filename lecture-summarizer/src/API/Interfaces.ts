@@ -16,3 +16,7 @@ export interface ISummary {
   questions: string[];
   summaries: string[];
 }
+
+export interface IQuestion {
+  generated_text: string;
+}

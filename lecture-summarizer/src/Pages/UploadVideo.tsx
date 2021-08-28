@@ -21,6 +21,7 @@ const UploadVideo = () => {
     setSelectedFile(fileList[0]);
   };
 
+
   const handleSubmission = () => {
     setIsFiledPicked(true);
     uploadVideo(selectedFile);

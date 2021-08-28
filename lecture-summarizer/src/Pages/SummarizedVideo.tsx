@@ -109,7 +109,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         </div>
 
         <div>
-          <h2>Questions + Answers</h2>
+          <h2>Questions</h2>
           <div className="summarized-notes">
             {summaryVideo?.questions.map((question: string) => {
               return (
