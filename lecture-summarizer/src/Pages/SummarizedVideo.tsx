@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   fetchAnkiDeck,
+  fetchCurrentVideo,
   fetchKeywords,
   fetchSummarizedNotes,
 } from "../API/Requests";
@@ -14,11 +15,10 @@ import Tag from "../Components/Tag";
 import TitleProp from "../Components/TitleProp";
 
 const SummarizedVideo: React.FC<{ match: any }> = (props) => {
-  console.log(props.match.params.id);
-
   const [keywords, setKeywords] = useState<string[]>([]);
   const [summarizedNotes, setSummarizedNotes] = useState<string[]>([]);
   const [ankiFlashCard, setAnkiFlashCard] = useState<string>();
+  const [currentVideo, setCurrentVideo] = useState<string>();
 
   useEffect(() => {
     const getKeywords = async () => {
@@ -36,9 +36,15 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
       setAnkiFlashCard(getAnkiDeckNotesFromServer.ankiFlashCards);
     };
 
+    const getCurrentVideo = async () => {
+      const getCurrentVideoFromServer = await fetchCurrentVideo();
+      setCurrentVideo(getCurrentVideoFromServer.currentVideo);
+    };
+
     getKeywords();
     getSummarizedNotes();
     getAnkiDeckNotes();
+    getCurrentVideo();
   }, []);
 
   return (
@@ -48,8 +54,12 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
       <Content>
         <TitleProp
           title="SUMMARIZED LECTURE"
-          description="Our Lecture Summarizer Extracts Videos Into Meaningful and Important Portions Of Information and Summarizes Content For You"
+          description="View Our Summarized Lecture"
         />
+
+        <div className="center-video">
+          <video src={currentVideo} autoPlay={false} controls={true} />
+        </div>
 
         <div>
           <h2>Upload Video</h2>
@@ -59,7 +69,6 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             })}
           </div>
         </div>
-
         <div>
           <h2>Summarized Notes</h2>
           <div className="summarized-notes">
