@@ -18,6 +18,7 @@ def json_to_list(filename):
     return json_obj
         
 
+
 def bag_of_words(corpus, ngram = (1,1), min_df = 2, max_df = 0.7, stop_words = "english"):
     vectorizer = TfidfVectorizer(analyzer='word', 
                              min_df = min_df, 
@@ -67,5 +68,7 @@ doc_embedding = model.encode(corpus, show_progress_bar=True)
 candidates = bow.get_feature_names()
 candidate_embeddings = model.encode(candidates, show_progress_bar=True)
 mss = max_sum_sim(doc_embedding, candidate_embeddings, candidates, top_n, nr_candidates)
-print(mss)
-# print(corpus)
+
+
+with open("keywords.json", "w") as f:
+    json.dump(mss, f)
