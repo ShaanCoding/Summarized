@@ -33,7 +33,9 @@ const UploadVideo = () => {
         />
 
         <div className="upload-file">
-          <input type="file" name="file" onChange={changeHandler} />
+          <div>
+            <input type="file" name="file" onChange={changeHandler} />
+          </div>
         </div>
 
         <div>
