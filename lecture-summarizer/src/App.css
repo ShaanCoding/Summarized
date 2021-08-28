@@ -1,3 +1,5 @@
+/* Start Of Core Theme */
+
 .navbar {
   width: 100%;
   height: 85px;
@@ -94,4 +96,32 @@
   color: #02073e;
 
   opacity: 0.8;
+}
+
+/* End Of Core Themes */
+
+.content {
+  padding: 20px 20%;
+}
+
+.title {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.title h2 {
+  font-size: 14px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  color: #244886;
+}
+
+.title h1 {
+  font-size: 36px;
+  line-height: 55px;
+  text-align: center;
+  color: #0f2137;
 }
