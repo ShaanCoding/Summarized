@@ -49,7 +49,7 @@ export default function BasicTable() {
                   {video.id}
                 </TableCell>
                 <TableCell align="right">
-                  <Link to={"/video/" + video.name}>
+                  <Link to={"/summarizedVideo/" + video.id}>
                     {video.name}
                   </Link>
                 </TableCell>

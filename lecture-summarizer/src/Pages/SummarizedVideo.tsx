@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IQuestionAnswer } from "../API/Interfaces";
+import { IQuestionAnswer, ISummary } from "../API/Interfaces";
 import {
-  fetchAnkiDeck,
-  fetchCurrentVideo,
-  fetchKeywords,
-  fetchQuestionsAndAnswer,
-  fetchSummarizedNotes,
+  // fetchAnkiDeck,
+  // fetchCurrentVideo,
+  // fetchKeywords,
+  // fetchQuestionsAndAnswer,
+  // fetchSummarizedNotes,
+  fetchSummaryData
 } from "../API/Requests";
 import Buttons from "../Components/Buttons";
 import Content from "../Components/Content";
@@ -17,45 +18,58 @@ import Tag from "../Components/Tag";
 import TitleProp from "../Components/TitleProp";
 
 const SummarizedVideo: React.FC<{ match: any }> = (props) => {
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [summarizedNotes, setSummarizedNotes] = useState<string[]>([]);
-  const [ankiFlashCard, setAnkiFlashCard] = useState<string>("");
-  const [currentVideo, setCurrentVideo] = useState<string>("");
-  const [questionsAndAnswers, setQuestionsAndAnswers] = useState<
-    IQuestionAnswer[]
-  >([]);
+  // const [keywords, setKeywords] = useState<string[]>([]);
+  // const [summarizedNotes, setSummarizedNotes] = useState<string[]>([]);
+  // const [ankiFlashCard, setAnkiFlashCard] = useState<string>("");
+  // const [currentVideo, setCurrentVideo] = useState<string>("");
+  // const [questionsAndAnswers, setQuestionsAndAnswers] = useState<IQuestionAnswer[]>([]);
+  const [summaryVideo, setSummaryVideo] = useState<ISummary>();
 
   useEffect(() => {
-    const getKeywords = async () => {
-      const fetchKeywordsFromServer = await fetchKeywords();
-      setKeywords(fetchKeywordsFromServer);
+
+    const getLastItem = (thePath: String) => thePath.substring(thePath.lastIndexOf('/') + 1)
+
+    let index = parseInt(getLastItem(window.location.href));
+
+    console.log(index)
+
+    const getSummaryData = async () => {
+      const getSummaryFromServer = await fetchSummaryData(index);
+      setSummaryVideo(getSummaryFromServer);
     };
 
-    const getSummarizedNotes = async () => {
-      const fetchSummarizedNotesFromServer = await fetchSummarizedNotes();
-      setSummarizedNotes(fetchSummarizedNotesFromServer);
-    };
+    // const getKeywords = async () => {
+    //   const fetchKeywordsFromServer = await fetchKeywords();
+    //   setKeywords(fetchKeywordsFromServer);
+    // };
 
-    const getAnkiDeckNotes = async () => {
-      const getAnkiDeckNotesFromServer = await fetchAnkiDeck();
-      setAnkiFlashCard(getAnkiDeckNotesFromServer.ankiFlashCards);
-    };
+    // const getSummarizedNotes = async () => {
+    //   const fetchSummarizedNotesFromServer = await fetchSummarizedNotes();
+    //   setSummarizedNotes(fetchSummarizedNotesFromServer);
+    // };
 
-    const getCurrentVideo = async () => {
-      const getCurrentVideoFromServer = await fetchCurrentVideo();
-      setCurrentVideo(getCurrentVideoFromServer.currentVideo);
-    };
+    // const getAnkiDeckNotes = async () => {
+    //   const getAnkiDeckNotesFromServer = await fetchAnkiDeck();
+    //   setAnkiFlashCard(getAnkiDeckNotesFromServer.ankiFlashCards);
+    // };
 
-    const getQuestionsAndAnswers = async () => {
-      const getQuestionsAndAnswersFromServer = await fetchQuestionsAndAnswer();
-      setQuestionsAndAnswers(getQuestionsAndAnswersFromServer);
-    };
+    // const getCurrentVideo = async () => {
+    //   const getCurrentVideoFromServer = await fetchCurrentVideo();
+    //   setCurrentVideo(getCurrentVideoFromServer.currentVideo);
+    // };
 
-    getKeywords();
-    getSummarizedNotes();
-    getAnkiDeckNotes();
-    getCurrentVideo();
-    getQuestionsAndAnswers();
+    // const getQuestionsAndAnswers = async () => {
+    //   const getQuestionsAndAnswersFromServer = await fetchQuestionsAndAnswer();
+    //   setQuestionsAndAnswers(getQuestionsAndAnswersFromServer);
+    // };
+
+    // getKeywords();
+    // getSummarizedNotes();
+    // getAnkiDeckNotes();
+    // getCurrentVideo();
+    // getQuestionsAndAnswers();
+
+    getSummaryData();
   }, []);
 
   return (
@@ -69,13 +83,13 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         />
 
         <div className="center-video">
-          <video src={currentVideo} autoPlay={false} controls={true} />
+          <video src="" autoPlay={false} controls={true} />
         </div>
 
         <div>
           <h2>Upload Video</h2>
           <div className="tag-grid">
-            {keywords.map((keyword: string) => {
+            {summaryVideo?.tags.map((keyword: string) => {
               return <Tag tagName={keyword} />;
             })}
           </div>
@@ -84,7 +98,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         <div>
           <h2>Summarized Notes</h2>
           <div className="summarized-notes">
-            {summarizedNotes.map((summarizedNote: string) => {
+            {summaryVideo?.summaries.map((summarizedNote: string) => {
               return (
                 <div>
                   <p>{summarizedNote}</p>
@@ -97,10 +111,10 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         <div>
           <h2>Questions + Answers</h2>
           <div className="summarized-notes">
-            {questionsAndAnswers.map((question: IQuestionAnswer) => {
+            {summaryVideo?.questions.map((question: string) => {
               return (
                 <div>
-                  <p>{question.question}</p>
+                  <p>{question}</p>
                 </div>
               );
             })}

@@ -8,3 +8,11 @@ export interface IQuestionAnswer {
   question: string;
   answer: string;
 }
+
+export interface ISummary {
+  name: string;
+  blob: string;
+  tags: string[];
+  questions: string[];
+  summaries: string[];
+}
