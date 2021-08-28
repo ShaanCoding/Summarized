@@ -87,6 +87,10 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Jarryd
+/keys/
+/v2t-venv/
+
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
