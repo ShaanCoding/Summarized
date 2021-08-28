@@ -51,7 +51,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
       <Content>
         <TitleProp
           title="SUMMARIZED LECTURE"
-          description="Our Lecture Summarizer Extracts Videos Into Meaningful and Important Portions Of Information and Summarizes Content For You"
+          description="View Our Summarized Lecture"
         />
 
         <div className="center-video">
@@ -78,7 +78,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             })}
           </div>
         </div>
-        
+
         <InlineFlexbox>
           <div className="button">
             {/* <Link to={ankiFlashCard} download="Anki" target="_blank"> */}
@@ -86,7 +86,6 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             {/* </Link> */}
           </div>
         </InlineFlexbox>
-      
       </Content>
 
       <Footer />

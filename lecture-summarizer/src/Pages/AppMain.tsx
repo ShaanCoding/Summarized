@@ -13,8 +13,8 @@ const appMain = () => {
 
       <Content>
         <TitleProp
-          title="UPLOAD VIDEO"
-          description="Our Lecture Summarizer Extracts Videos Into Meaningful and Important Portions Of Information and Summarizes Content For You"
+          title="MAIN PAGE"
+          description="Upload Your Lecture To Automatically Summarize Or View Past Lectures"
         />
 
         <InlineFlexbox>
