@@ -145,6 +145,7 @@
 .exciting-new-features {
   margin-top: 40px;
   display: grid;
+  align-items: flex-start;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 10px;
@@ -153,10 +154,11 @@
 .exciting-new-features > div {
   width: 100%;
   display: flex;
+  margin: 40px;
 }
 
 .exciting-new-features > div > div {
-  width: 100%;
+  padding: 10px;
 }
 
 .exciting-new-features h3 {
@@ -190,7 +192,6 @@
 .exciting-new-features > div {
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 /* End of exciting new features */
