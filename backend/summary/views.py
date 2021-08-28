@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework import generics, status, permissions
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from summary.models import Overview, Summary
-from summary import serializers
+from summary.serializers import OverviewSerializer, SummarySerializer
+
 
 class GetOverview(APIView):
     """
@@ -10,6 +12,11 @@ class GetOverview(APIView):
     """
 
     def get(self, request, format=None):
-        pass
+        all_summaries = Overview.objects.all()
+        serializer = OverviewSerializer(all_summaries, many=True)
 
+        return Response({
+            'status': 'success',
+            'overview': serializer.data
+        }, status=status.HTTP_200_OK)
 
