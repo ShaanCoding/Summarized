@@ -79,7 +79,7 @@ def parse_response(response):
         for alt in res.alternatives:
             if alt.confidence > max_conf:
                 max_alt = alt.transcript
-        rows.append(max_alt)
+        rows.append(max_alt.strip())
         
     # convert to a json string or smth
     return rows

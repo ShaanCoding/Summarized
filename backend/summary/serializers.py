@@ -27,3 +27,6 @@ class BlobSerializer(serializers.Serializer):
     Serializer for a blob of text
     """
     blob = serializers.CharField(required=True)
+
+class GetSummarySerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=True)
