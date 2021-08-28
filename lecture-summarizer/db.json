@@ -43,5 +43,22 @@
   },
   "currentVideo": {
     "currentVideo": "http://easyhtml5video.com/assets/video/new/Penguins_of_Madagascar.mp4"
-  }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "How are you?",
+      "answer": "Terrific"
+    },
+    {
+      "id": 2,
+      "question": "Who is great at minecraft?",
+      "answer": "Technoblade"
+    },
+    {
+      "id": 3,
+      "question": "Who has work on Monday?",
+      "answer": "linkedin.com/ShaanCoding"
+    }
+  ]
 }

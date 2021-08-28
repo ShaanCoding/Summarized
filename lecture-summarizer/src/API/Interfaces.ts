@@ -4,3 +4,9 @@ export interface IVideo {
   videoSummary: string;
   duration: string;
 }
+
+export interface IQuestionAnswer {
+  id: number;
+  question: string;
+  answer: string;
+}
