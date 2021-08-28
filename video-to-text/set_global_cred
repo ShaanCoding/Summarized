@@ -1,0 +1,2 @@
+#!/bin/sh
+export GOOGLE_APPLICATION_CREDENTIALS="/mnt/c/linux_scripts/hackathon/keys/video-to-text-324211-dfded3aa3010.json"
