@@ -14,6 +14,7 @@ def summarize_text(text, is_json):
     authHeaderVal = f"Bearer {API_KEY}"
 
     text_ready = text
+
     if is_json:
         text_to_sum = json.load(text)
         text_ready = ' '.join(text_to_sum)
