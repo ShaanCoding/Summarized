@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +28,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'Content-Type',
+    'Content-Disposition'
+)
 
 # Application definition
 
@@ -135,6 +141,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Maybe if we need a custom auth model
 
 REST_FRAMEWORK = {
+    'DEFAULT_METADATA_CLASS': None,
+
     # 'DEFAULT_AUTHENTICATION_CLASSES': [
     #     'authentication.authentication.CustomTokenAuth'
     #     # 'rest_framework.authentication.TokenAuthentication',
@@ -142,8 +150,8 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.IsAuthenticated',
     # ]
-    #'DEFAULT_PARSER_CLASSES': [
-        # 'rest_framework.parsers.JSONParser',
-        # 'rest_framework.parsers.FileUploadParser',
-    ##]
+    # 'DEFAULT_PARSER_CLASSES': [
+    # 'rest_framework.parsers.JSONParser',
+    # 'rest_framework.parsers.FileUploadParser',
+    # ]
 }
