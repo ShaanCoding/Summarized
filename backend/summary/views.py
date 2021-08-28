@@ -8,6 +8,7 @@ from summary.models import Overview, Summary
 from summary.serializers import OverviewSerializer, SummarySerializer
 from summary.encoder import mp4_to_flac
 from summary import google_api
+from summary import summarize
 import time
 
 
