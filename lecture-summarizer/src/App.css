@@ -200,3 +200,39 @@ body {
 }
 
 /* End Of View Video Table */
+
+/* Start Of Tags */
+
+.tag-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px 10px;
+}
+
+.tag-grid > div {
+  width: 100%;
+}
+
+.tag {
+  text-align: center;
+  background-color: #7c83e6;
+  color: #ffffff;
+}
+
+.tag p {
+  display: inline-block;
+}
+
+/* End Of Tags */
+
+/* Summarized Notes */
+
+.summarized-notes {
+  
+}
+
+.summarized-notes > div {
+  background-color: ;
+}
+
+/* EO Summarized Notes */
