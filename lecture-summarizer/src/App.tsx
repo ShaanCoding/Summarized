@@ -5,7 +5,7 @@ import index from "./Pages/Index";
 import appMain from "./Pages/AppMain";
 import UploadVideo from "./Pages/UploadVideo";
 import ViewVideo from "./Pages/ViewVideo";
-import summarizedVideo from "./Pages/SummarizedVideo";
+import SummarizedVideo from "./Pages/SummarizedVideo";
 
 function App() {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/appMain" component={appMain} />
         <Route exact path="/uploadVideo" component={UploadVideo} />
         <Route exact path="/viewVideo" component={ViewVideo} />
-        <Route path={`/summarizedVideo/:id`} component={summarizedVideo} />
+        <Route path={`/summarizedVideo/:id`} component={SummarizedVideo} />
       </Switch>
     </div>
   );

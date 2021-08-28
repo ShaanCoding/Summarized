@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { fetchKeywords } from "../API/Requests";
+import { Link } from "react-router-dom";
+import {
+  fetchAnkiDeck,
+  fetchKeywords,
+  fetchSummarizedNotes,
+} from "../API/Requests";
 import Buttons from "../Components/Buttons";
 import Content from "../Components/Content";
 import Footer from "../Components/Footer";
@@ -8,10 +13,33 @@ import NavBar from "../Components/NavBar";
 import Tag from "../Components/Tag";
 import TitleProp from "../Components/TitleProp";
 
-const summarizedVideo: React.FC<{ match: any }> = (props) => {
+const SummarizedVideo: React.FC<{ match: any }> = (props) => {
   console.log(props.match.params.id);
 
-  const handleSubmission = () => {};
+  const [keywords, setKeywords] = useState<string[]>([]);
+  const [summarizedNotes, setSummarizedNotes] = useState<string[]>([]);
+  const [ankiFlashCard, setAnkiFlashCard] = useState<string>();
+
+  useEffect(() => {
+    const getKeywords = async () => {
+      const fetchKeywordsFromServer = await fetchKeywords();
+      setKeywords(fetchKeywordsFromServer);
+    };
+
+    const getSummarizedNotes = async () => {
+      const fetchSummarizedNotesFromServer = await fetchSummarizedNotes();
+      setSummarizedNotes(fetchSummarizedNotesFromServer);
+    };
+
+    const getAnkiDeckNotes = async () => {
+      const getAnkiDeckNotesFromServer = await fetchAnkiDeck();
+      setAnkiFlashCard(getAnkiDeckNotesFromServer.ankiFlashCards);
+    };
+
+    getKeywords();
+    getSummarizedNotes();
+    getAnkiDeckNotes();
+  }, []);
 
   return (
     <>
@@ -26,56 +54,31 @@ const summarizedVideo: React.FC<{ match: any }> = (props) => {
         <div>
           <h2>Upload Video</h2>
           <div className="tag-grid">
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
-            <Tag tagName="Hello world" />
+            {keywords.map((keyword: string) => {
+              return <Tag tagName={keyword} />;
+            })}
           </div>
         </div>
 
         <div>
           <h2>Summarized Notes</h2>
           <div className="summarized-notes">
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi quam et illum asperiores, tenetur saepe cum officia
-                corrupti aspernatur. Consequuntur aperiam eius impedit sapiente.
-                Vero laudantium possimus excepturi laborum sit?
-              </p>
-            </div>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi quam et illum asperiores, tenetur saepe cum officia
-                corrupti aspernatur. Consequuntur aperiam eius impedit sapiente.
-                Vero laudantium possimus excepturi laborum sit?
-              </p>
-            </div>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi quam et illum asperiores, tenetur saepe cum officia
-                corrupti aspernatur. Consequuntur aperiam eius impedit sapiente.
-                Vero laudantium possimus excepturi laborum sit?
-              </p>
-            </div>
+            {summarizedNotes.map((summarizedNote: string) => {
+              return (
+                <div>
+                  <p>{summarizedNote}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <InlineFlexbox>
-          <Buttons btnText="Download Anki" onClick={handleSubmission} />
+          <div className="button">
+            {/* <Link to={ankiFlashCard} download="Anki" target="_blank"> */}
+            <button type="button">Download Anki</button>
+            {/* </Link> */}
+          </div>
         </InlineFlexbox>
       </Content>
 
@@ -84,4 +87,4 @@ const summarizedVideo: React.FC<{ match: any }> = (props) => {
   );
 };
 
-export default summarizedVideo;
+export default SummarizedVideo;
