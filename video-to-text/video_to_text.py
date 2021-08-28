@@ -1,6 +1,6 @@
-gcs_uri = "gs://video_storage_314/snd.opus"
+import json
 
-def transcribe_gcs(gcs_uri):
+def transcribe_gcs(gcs_uri, timeout=1000):
     """Asynchronously transcribes the audio file specified by the gcs_uri."""
     from google.cloud import speech
 
@@ -8,21 +8,42 @@ def transcribe_gcs(gcs_uri):
 
     audio = speech.RecognitionAudio(uri=gcs_uri)
     config = speech.RecognitionConfig(
-        encoding=speech.RecognitionConfig.AudioEncoding.OGG_OPUS,
-        sample_rate_hertz=16000,
+        encoding=speech.RecognitionConfig.AudioEncoding.FLAC,
+        # sample_rate_hertz=16000,
         language_code="en-US",
+        max_alternatives=5,
+        use_enhanced=True,
+        model="phone_call"
     )
 
     operation = client.long_running_recognize(config=config, audio=audio)
 
     print("Waiting for operation to complete...")
-    response = operation.result(timeout=1000)
+    response = operation.result(timeout=timeout)
 
-    # Each result is for a consecutive portion of the audio. Iterate through
-    # them to get the transcripts for the entire audio file.
-    for result in response.results:
-        # The first alternative is the most likely one for this portion.
-        print(u"Transcript: {}".format(result.alternatives[0].transcript))
-        print("Confidence: {}".format(result.alternatives[0].confidence))
+    return response
 
-transcribe_gcs(gcs_uri)
+#TODO: We can have this export to a google cloud storage bucket if needed
+def export_to_json(response, path="output.json"):
+    rows = []
+    for res in response.results:
+        max_conf = 0
+        max_alt = ""
+        for alt in res.alternatives:
+            if alt.confidence > max_conf:
+                max_alt = alt.transcript
+        rows.append(max_alt)
+
+    with open(path, "w", encoding='utf-8') as f:
+        json.dump(rows, f, indent = 4)
+
+    print("Json file created.")
+
+
+
+gcs_uri = "gs://video_storage_314/snd_trim_flac.flac"
+gcs_uri_2 = "gs://video_storage_314/snd_trim_20.flac"
+response = transcribe_gcs(gcs_uri_2)
+print("Finished transcription.")
+export_to_json(response, "long.json")
+
