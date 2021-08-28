@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser, JSONParser
 from summary.models import Overview, Summary
 from summary.serializers import OverviewSerializer, SummarySerializer
-from summary.cloud_upload import upload_blob
+from summary.google_api import upload_blob, BUCKET_NAME, DST_BLOB_NAME, transcribe_gcs, GCS_URI
 
 class GetOverview(APIView):
     """
@@ -41,6 +41,7 @@ class AddSummary(APIView):
             'status': 'success',
         }, status=status.HTTP_200_OK)
 
+
 class UploadFlac(APIView):
     """
     Add a summary using a flac.
@@ -48,26 +49,22 @@ class UploadFlac(APIView):
     parser_classes = [FileUploadParser]
     
     def post(self, request, format=None):
-        # all_files = request.FILES
-        # print(all_files)
-        
         up_file1 = request.FILES['file']
         # up_file2 = request.data['file']
-
-        # print(up_file1)
-        #print(up_file2)
-
+        
         # save to default storage
-        default_storage.save(up_file1.name)
+        default_storage.delete(up_file1.name)
         file_name = default_storage.save(up_file1.name, up_file1)
-        
-        # get url
         file = default_storage.open(file_name)
-        file_url = default_storage.url(file_name)
-        
-        print(file)
-        print(file_url)
 
+        upload_blob(BUCKET_NAME, str(file), DST_BLOB_NAME)
+        transcription = transcribe_gcs(GCS_URI)
+
+        print(transcription)
+
+        # cleanup
+        default_storage.delete(up_file1.name)
+        
         return Response({
             'status': 'success',
         }, status=status.HTTP_200_OK)
