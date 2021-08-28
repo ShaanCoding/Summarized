@@ -163,3 +163,18 @@
   justify-content: center;
   display: flex;
 }
+
+/* Upload File Div */
+
+.upload-file {
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.upload-file button {
+  
+}
+
+/* End Of Upload File Div */
