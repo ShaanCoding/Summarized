@@ -20,3 +20,11 @@ class GetOverview(APIView):
             'overview': serializer.data
         }, status=status.HTTP_200_OK)
 
+
+class AddSummary(APIView):
+    """
+    Add a summary
+    """
+
+    def post(self, request, format=None):
+        pass

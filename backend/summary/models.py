@@ -9,3 +9,5 @@ class Summary(models.Model):
     video_summary_link = models.CharField(max_length=2100)
     related_tags = models.TextField()
     questions = models.TextField()
+    summaries = models.TextField()
+
