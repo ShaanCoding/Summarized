@@ -2,6 +2,17 @@ import re
 import json
 from nltk.stem import WordNetLemmatizer
 
+"""
+    NEEDS TO BE DONE BEFORE RUNNING:
+        You need to have run the video_to_text.py file
+
+    EXPECTED TO BE RUN LINE THIS:
+        python text_preproc.py
+
+    OUTPUTS:
+        processed_transcript.json in text_data folder
+"""
+
 def json_to_list(filename):
     json_obj = {}
     with open(filename) as f:
@@ -84,10 +95,19 @@ def stop_word_removal(text):
     return ' '.join(e.lower() for e in text.split() if e.lower() not in stop_words)
 
 lem = WordNetLemmatizer()
-json_obj = json_to_list('../video-to-text/long.json')
+
+directory = "../text_data/"
+in_filename = "video_transcript.json"
+in_path = directory + in_filename
+out_filename = "processed_transcript.json"
+out_path = directory + out_filename
+
+json_obj = json_to_list(in_path)
 json_obj = list(map(decontracted, json_obj)) 
 json_obj = list(map(remove_special_character, json_obj)) 
 json_obj = list(map(lem_text, json_obj)) 
 json_obj = list(map(stop_word_removal, json_obj)) 
 
-list_to_json("processed.json", json_obj)
+
+
+list_to_json(out_path, json_obj)
