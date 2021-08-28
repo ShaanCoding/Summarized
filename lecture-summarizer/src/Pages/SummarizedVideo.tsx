@@ -122,11 +122,11 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         </div>
 
         <InlineFlexbox>
-          <div className="button">
-            {/* <Link to={ankiFlashCard} download="Anki" target="_blank"> */}
-            <button type="button">Download Anki</button>
-            {/* </Link> */}
-          </div>
+          <Link to={{ pathname: "https://files.catbox.moe/jns8py.anki" }} target="_blank">
+            <div className="button">
+              <button>Download Anki</button>
+            </div>
+          </Link>
         </InlineFlexbox>
       </Content>
 
