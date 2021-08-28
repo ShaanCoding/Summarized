@@ -68,7 +68,6 @@ class UploadFlac(APIView):
         print(file)
         print(file_url)
 
-
         return Response({
             'status': 'success',
         }, status=status.HTTP_200_OK)
