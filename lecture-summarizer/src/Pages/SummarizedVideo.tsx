@@ -16,6 +16,7 @@ import InlineFlexbox from "../Components/InlineFlexbox";
 import NavBar from "../Components/NavBar";
 import Tag from "../Components/Tag";
 import TitleProp from "../Components/TitleProp";
+import xd from "./summarizedVideo/snd_short.mp4";
 
 const SummarizedVideo: React.FC<{ match: any }> = (props) => {
   // const [keywords, setKeywords] = useState<string[]>([]);
@@ -83,7 +84,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         />
 
         <div className="center-video">
-          <video src="" autoPlay={false} controls={true} />
+          <video src={xd} autoPlay={false} controls={true} />
         </div>
 
         <div>
@@ -109,7 +110,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
         </div>
 
         <div>
-          <h2>Questions + Answers</h2>
+          <h2>Questions</h2>
           <div className="summarized-notes">
             {summaryVideo?.questions.map((question: string) => {
               return (
