@@ -32,6 +32,12 @@ export const fetchCurrentVideo = async () => {
   return res.data;
 };
 
+// Get Questions + Answers
+export const fetchQuestionsAndAnswer = async () => {
+  const res = await axios.get(`${SERVER_URL}/questions`);
+  return res.data;
+};
+
 // Upload Video
 // If it doesn't work blames James W
 export const uploadVideo = async (data?: File) => {

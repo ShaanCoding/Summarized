@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { IQuestionAnswer } from "../API/Interfaces";
 import {
   fetchAnkiDeck,
   fetchCurrentVideo,
   fetchKeywords,
+  fetchQuestionsAndAnswer,
   fetchSummarizedNotes,
 } from "../API/Requests";
 import Buttons from "../Components/Buttons";
@@ -17,8 +19,11 @@ import TitleProp from "../Components/TitleProp";
 const SummarizedVideo: React.FC<{ match: any }> = (props) => {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [summarizedNotes, setSummarizedNotes] = useState<string[]>([]);
-  const [ankiFlashCard, setAnkiFlashCard] = useState<string>();
-  const [currentVideo, setCurrentVideo] = useState<string>();
+  const [ankiFlashCard, setAnkiFlashCard] = useState<string>("");
+  const [currentVideo, setCurrentVideo] = useState<string>("");
+  const [questionsAndAnswers, setQuestionsAndAnswers] = useState<
+    IQuestionAnswer[]
+  >([]);
 
   useEffect(() => {
     const getKeywords = async () => {
@@ -41,10 +46,16 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
       setCurrentVideo(getCurrentVideoFromServer.currentVideo);
     };
 
+    const getQuestionsAndAnswers = async () => {
+      const getQuestionsAndAnswersFromServer = await fetchQuestionsAndAnswer();
+      setQuestionsAndAnswers(getQuestionsAndAnswersFromServer);
+    };
+
     getKeywords();
     getSummarizedNotes();
     getAnkiDeckNotes();
     getCurrentVideo();
+    getQuestionsAndAnswers();
   }, []);
 
   return (
@@ -69,6 +80,7 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
             })}
           </div>
         </div>
+
         <div>
           <h2>Summarized Notes</h2>
           <div className="summarized-notes">
@@ -76,6 +88,20 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
               return (
                 <div>
                   <p>{summarizedNote}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <h2>Questions + Answers</h2>
+          <div className="summarized-notes">
+            {questionsAndAnswers.map((question: IQuestionAnswer) => {
+              return (
+                <div>
+                  <p>{question.question}</p>
+                  <p>{question.answer}</p>
                 </div>
               );
             })}
