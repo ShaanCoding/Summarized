@@ -8,6 +8,7 @@ import sys
 
 # Replace by your API key from Sassbook AI.
 API_KEY = "U2FsdGVkX185U9xDNeOQ8xa9O3v2TV+NpWP6KY+nHsAFFvTOMZFqNO/br/UAR/pX6IdZ/sTNHH73Zd7+ZAA/GoLts+Co2qWiCZVVilEKrnP0F/5ktN7BBeLxCPd3wXvFhe+X4V+PW7vI1AozQ5+29hcHTBeFkLk74we8kaCyJV4jB2RMiLIOTUKAtT/D+MHp"
+
 authHeaderVal = f"Bearer {API_KEY}"
 endPoint = 'https://sassbook.com/api/ext/summarize/v1'
 
@@ -17,7 +18,6 @@ with open('video-to-text/output.json', 'r') as read:
 
 
 textReady = ' '.join(textToSummarise)
-
 
 print(textReady)
 
