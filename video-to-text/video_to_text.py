@@ -7,7 +7,7 @@ import sys
         2. you need to have uploaded the video file to a bucket and have its gsc_uri
 
     EXPECTED TO BE RUN LINE THIS:
-        python video_to_text.py gcs_uri
+        python video_to_text.py gs://video_storage_314/video.flac
 
     OUTPUTS:
         video_transcript.json in text_data folder
@@ -60,7 +60,7 @@ def export_to_json(response, path="output.json"):
 if len(sys.argv) > 1:
     gcs_uri = sys.argv[1]
 else:
-    gcs_uri = None #"gs://video_storage_314/snd_trim_20.flac"
+    gcs_uri = "gs://video_storage_314/video.flac" #"gs://video_storage_314/snd_trim_20.flac"
 
 
 directory = "../text_data/"

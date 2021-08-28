@@ -1,6 +1,17 @@
 from google.cloud import storage
 import sys
 
+"""
+    NEEDS TO BE DONE BEFORE RUNNING:
+        you need a string path to a .flac file
+
+    EXPECTED TO BE RUN LINE THIS:
+        python cloud_upload.py some/path/filename.flac
+
+    OUTPUTS:
+        nothin, but only stops running when the video is uploaded
+"""
+
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
