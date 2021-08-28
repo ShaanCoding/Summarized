@@ -18,7 +18,7 @@ const ViewVideo = () => {
       <Content>
         <TitleProp
           title="VIEW VIDEO"
-          description="Our Lecture Summarizer Extracts Videos Into Meaningful and Important Portions Of Information and Summarizes Content For You"
+          description="View Past Lectures and Summarized Notes"
         />
 
         <InlineFlexbox>

@@ -33,7 +33,7 @@ const UploadVideo = () => {
       <Content>
         <TitleProp
           title="UPLOAD VIDEO"
-          description="Our Lecture Summarizer Extracts Videos Into Meaningful and Important Portions Of Information and Summarizes Content For You"
+          description="Select Your Video To Automatically Summarize"
         />
 
         <div className="upload-file">

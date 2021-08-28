@@ -9,10 +9,17 @@ import IndexGrid from "../Components/IndexGrid";
 import IndexExcitingFeatures from "../Components/IndexExcitingFeatures";
 import Header from "../Components/Header";
 
+import IndexFlex from "../Components/IndexFlex";
 import Timer from "../Images/Icons/timer.svg";
 import Notes from "../Images/Icons/notes.svg";
 import Cogs from "../Images/Icons/cogs.svg";
-import IndexFlex from "../Components/IndexFlex";
+
+import smallChat from "../Images/Icons/smallIcons/chat.svg";
+import smallCloud from "../Images/Icons/smallIcons/cloud.svg";
+import smallCogs from "../Images/Icons/smallIcons/cogs.svg";
+import smallStar from "../Images/Icons/smallIcons/star.svg";
+import smallTimer from "../Images/Icons/smallIcons/timer.svg";
+import smallTrophy from "../Images/Icons/smallIcons/trophy.svg";
 
 const index = () => {
   return (
@@ -39,7 +46,7 @@ const index = () => {
           />
           <IndexExcitingFeatures
             title="Generate Flash Cards"
-            description="Automatically generate revision questions and flash card decks, compatable with anki."
+            description="Automatically generate revision questions and flash card decks, compatable with Anki."
             icon={Timer}
           />
         </div>
@@ -53,32 +60,20 @@ const index = () => {
         <div>
           <div className="how-it-works-flex">
             <IndexFlex
-              title="Title one"
-              description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tenetur aperiam sequi, dolorum nostrum veniam sunt reprehenderit
-                repellendus natus numquam repudiandae distinctio doloribus!
-                Asperiores modi minima a pariatur optio consequuntur magni."
+              title="Speech-To-Text (STT)"
+              description="By intergrating our solution through Google's Speech-To-Text we're able to extract and transcribe lecture videos and convert this into text. Through this we're able to further process and format this data for summarization. This typically averages in accuracies 90%."
             />
             <IndexFlex
-              title="Title one"
-              description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tenetur aperiam sequi, dolorum nostrum veniam sunt reprehenderit
-                repellendus natus numquam repudiandae distinctio doloribus!
-                Asperiores modi minima a pariatur optio consequuntur magni."
+              title="Word Frequency Counter"
+              description="Through a heuristic based trained machine-learning model, which removes filler words, we're able to accurately analyse and determine the frequency of reoccuring words as well as determine key themes within a lecture."
             />
             <IndexFlex
-              title="Title one"
-              description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tenetur aperiam sequi, dolorum nostrum veniam sunt reprehenderit
-                repellendus natus numquam repudiandae distinctio doloribus!
-                Asperiores modi minima a pariatur optio consequuntur magni."
+              title="Automatic Lecture Summarization"
+              description="Through the SaasBooks API we're able to automatically summarize pages of data and information into mere paragraphs of key points, in a human-readable and smoothly read format."
             />
             <IndexFlex
-              title="Title one"
-              description="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tenetur aperiam sequi, dolorum nostrum veniam sunt reprehenderit
-                repellendus natus numquam repudiandae distinctio doloribus!
-                Asperiores modi minima a pariatur optio consequuntur magni."
+              title="Question Generation Model"
+              description="Through another artifical-intelligence based machine-learning model, we're able to accurately generate questions based on the paragraphs given through the SaaSBooks API."
             />
           </div>
         </div>
@@ -91,34 +86,34 @@ const index = () => {
         />
         <div className="exciting-new-features">
           <IndexGrid
-            title="Smart Features"
-            description="Get your blood tests delivered at let home collect sample from the victory of the managments."
-            icon={Timer}
+            title="Automatic Video Generation"
+            description="Recap your lectures at x10 speed through our data analytics solution, we find key points of your lecture and combine them into a summarized video."
+            icon={smallTimer}
           />
           <IndexGrid
-            title="Smart Features"
-            description="Get your blood tests delivered at let home collect sample from the victory of the managments."
-            icon={Timer}
+            title="Summarized Notes"
+            description="Through GPT-3 and other heuristic-based training models we automatically summarize lecture notes through speech-to-text."
+            icon={smallCloud}
           />
           <IndexGrid
-            title="Smart Features"
-            description="Get your blood tests delivered at let home collect sample from the victory of the managments."
-            icon={Timer}
+            title="Generate Flash Cards"
+            description="Automatically generate revision questions and flash card decks, compatable with Anki."
+            icon={smallCogs}
           />
           <IndexGrid
-            title="Smart Features"
-            description="Get your blood tests delivered at let home collect sample from the victory of the managments."
-            icon={Timer}
+            title="Speech-To-Text (STT)"
+            description="By intergrating our solution through Google's Speech-To-Text we're able to extract and transcribe lecture videos and convert this into text. Through this we're able to further process and format this data for summarization. This typically averages in accuracies 90%."
+            icon={smallChat}
           />
           <IndexGrid
-            title="Smart Features"
-            description="Get your blood tests delivered at let home collect sample from the victory of the managments."
-            icon={Timer}
+            title="Word Frequency Counter"
+            description="Through a heuristic based trained machine-learning model, which removes filler words, we're able to accurately analyse and determine the frequency of reoccuring words as well as determine key themes within a lecture."
+            icon={smallStar}
           />
           <IndexGrid
-            title="Smart Features"
-            description="Get your blood tests delivered at let home collect sample from the victory of the managments."
-            icon={Timer}
+            title="Question Generation Model"
+            description="Through another artifical-intelligence based machine-learning model, we're able to accurately generate questions based on the paragraphs given through the SaaSBooks API."
+            icon={smallTrophy}
           />
         </div>
       </div>

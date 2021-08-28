@@ -7,8 +7,9 @@ const Header = () => {
       <div>
         <h1>Skip lectures without the guilt.</h1>
         <p>
-          Welcome to our Lecture Summarizer. Our Lecture Summarizer extracts
-          into meaningful and important portions and summarizes content for you.
+          Welcome to our Summarized. Our Lecture Summarizer extracts info into
+          meaningful and important key-themes, making studying hassle & guilt
+          free.
         </p>
 
         <Link to="/appMain">
