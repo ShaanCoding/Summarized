@@ -93,6 +93,8 @@ v2t-venv/
 v2tvenv/
 keyword_extraction/keyword_extraction.ipynb
 keyword_extraction/text_preprocessing.ipynb
+video_data/in.mp4
+video_data/out.flac
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
