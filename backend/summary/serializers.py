@@ -1,3 +1,4 @@
+from requests.api import request
 from rest_framework import serializers
 from summary import models
 
@@ -17,5 +18,12 @@ class SummarySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = models.Summary
-        fields = ['name', 'duration', 'video_summary_link',
-                  'related_tags', 'questions']
+        fields = ['name', 'blob', 'related_tags',
+                  'questions', 'summaries']
+
+
+class BlobSerializer(serializers.Serializer):
+    """
+    Serializer for a blob of text
+    """
+    blob = serializers.CharField(required=True)

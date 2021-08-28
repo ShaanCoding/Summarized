@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser, JSONParser
 from summary.models import Overview, Summary
-from summary.serializers import OverviewSerializer, SummarySerializer
+from summary.serializers import OverviewSerializer, SummarySerializer, BlobSerializer
 from summary.encoder import mp4_to_flac
 from summary import google_api
 from summary import summarize
@@ -25,6 +25,23 @@ class GetOverview(APIView):
             'status': 'success',
             'overview': serializer.data
         }, status=status.HTTP_200_OK)
+
+
+class SummarizeText(APIView):
+    """
+    Summarize a given blob of text
+    """
+    def post(self, request, format=None):
+        serializer = BlobSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors)
+
+        # test
+        print(serializer.blob)
+        print(serializer.validated_data['blob'])
+
+        summarize.summarize_text(serializer.blob, False)
 
 
 class UploadVideo(APIView):
@@ -57,7 +74,7 @@ class UploadVideo(APIView):
 
         # get the flac file
         flac_h = default_storage.open(flac_file)
-        
+
         google_api.upload_blob(google_api.BUCKET_NAME,
                                str(flac_h), google_api.DST_BLOB_NAME)
 
@@ -65,14 +82,14 @@ class UploadVideo(APIView):
 
         transcription = google_api.transcribe_gcs(google_api.GCS_URI)
 
-        parsed_json= google_api.parse_response(transcription)
+        parsed_json = google_api.parse_response(transcription)
 
         print(parsed_json)
-        
+
         # cleanup
         default_storage.delete(video_file.name)
         default_storage.delete(str(flac_h))
-        
+
         return Response({
             'status': 'success',
         }, status=status.HTTP_200_OK)
