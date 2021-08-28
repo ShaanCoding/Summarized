@@ -1,0 +1,180 @@
+/* Start Of Core Theme */
+
+.navbar {
+  width: 100%;
+  height: 85px;
+  background: #252525;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar > div {
+  margin: 0px 25%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.navbar > div > div {
+  display: flex;
+  width: 100%;
+}
+
+.navbar > div > div > div {
+  margin: 20px;
+}
+
+.navbar h2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.navbar a {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 33px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  opacity: 0.6;
+}
+
+.footer {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer > div {
+  padding: 100px;
+}
+
+.footer > div > div {
+  padding: 15px 0px;
+}
+
+.footer p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  /* identical to box height, or 167% */
+
+  letter-spacing: -0.5px;
+
+  color: #0f2137;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer li {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 250%;
+  /* or 35px */
+
+  color: #02073e;
+
+  opacity: 0.8;
+}
+
+/* End Of Core Themes */
+
+.content {
+  padding: 20px 20%;
+}
+
+.title {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.title h2 {
+  font-size: 14px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  color: #244886;
+}
+
+.title h1 {
+  font-size: 36px;
+  line-height: 55px;
+  text-align: center;
+  color: #0f2137;
+}
+
+.button {
+  padding: 10px 20px;
+}
+
+.button button {
+  padding: 20px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  color: #ffffff;
+
+  background: #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 53.2441px;
+}
+
+.button button:hover {
+  opacity: 0.8;
+}
+
+/* General */
+
+.inline-flexbox {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.inline-flexbox > div {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+/* Upload File Div */
+
+.upload-file {
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.upload-file button {
+  
+}
+
+/* End Of Upload File Div */
