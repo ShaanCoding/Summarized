@@ -1,14 +1,16 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { IVideo } from "../API/Interfaces";
+import { fetchVideoList } from "../API/Requests";
 import Buttons from "../Components/Buttons";
 import Content from "../Components/Content";
-import BasicTable from "../Components/EnhancedTableHead";
+import BasicTable from "../Components/BasicTable";
 import Footer from "../Components/Footer";
 import InlineFlexbox from "../Components/InlineFlexbox";
 import NavBar from "../Components/NavBar";
 import TitleProp from "../Components/TitleProp";
 
-const viewVideo = () => {
+const ViewVideo = () => {
   return (
     <>
       <NavBar />
@@ -33,4 +35,4 @@ const viewVideo = () => {
   );
 };
 
-export default viewVideo;
+export default ViewVideo;

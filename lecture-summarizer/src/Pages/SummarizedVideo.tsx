@@ -1,4 +1,5 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { fetchKeywords } from "../API/Requests";
 import Buttons from "../Components/Buttons";
 import Content from "../Components/Content";
 import Footer from "../Components/Footer";

@@ -1,0 +1,34 @@
+{
+  "keywords": [
+    "constrain",
+    "make",
+    "offer",
+    "bid",
+    "normative",
+    "trade",
+    "economics",
+    "consumers",
+    "wage",
+    "auction"
+  ],
+  "videoList": [
+    {
+      "id": 1,
+      "videoName": "small_lecture.mp4",
+      "videoSummary": "small_lecture_summarized.mp4",
+      "duration": "32:04"
+    },
+    {
+      "id": 2,
+      "videoName": "small_lecture.mp4",
+      "videoSummary": "small_lecture_summarized.mp4",
+      "duration": "32:04"
+    },
+    {
+      "id": 3,
+      "videoName": "small_lecture.mp4",
+      "videoSummary": "small_lecture_summarized.mp4",
+      "duration": "32:04"
+    }
+  ]
+}

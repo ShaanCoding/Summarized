@@ -204,6 +204,7 @@ body {
 /* Start Of Tags */
 
 .tag-grid {
+  margin: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px 10px;
@@ -228,11 +229,12 @@ body {
 /* Summarized Notes */
 
 .summarized-notes {
-  
 }
 
 .summarized-notes > div {
-  background-color: ;
+  background: #ececec;
+  padding: 10px 20px;
+  margin: 20px;
 }
 
 /* EO Summarized Notes */
