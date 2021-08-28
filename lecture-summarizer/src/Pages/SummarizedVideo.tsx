@@ -101,7 +101,6 @@ const SummarizedVideo: React.FC<{ match: any }> = (props) => {
               return (
                 <div>
                   <p>{question.question}</p>
-                  <p>{question.answer}</p>
                 </div>
               );
             })}
