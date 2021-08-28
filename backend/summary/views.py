@@ -6,7 +6,9 @@ from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser, JSONParser
 from summary.models import Overview, Summary
 from summary.serializers import OverviewSerializer, SummarySerializer
+from summary.encoder import mp4_to_flac
 from summary import google_api
+import time
 
 
 class GetOverview(APIView):
@@ -24,7 +26,7 @@ class GetOverview(APIView):
         }, status=status.HTTP_200_OK)
 
 
-class AddSummary(APIView):
+class UploadVideo(APIView):
     """
     Add a summary using a video.
     """
@@ -32,12 +34,44 @@ class AddSummary(APIView):
 
     def post(self, request, format=None):
         video_file = request.FILES['file']
+        flac_file = 'out.flac'
 
         if not video_file:
             return Response({
                 'status': 'fail',
             }, status=status.HTTP_400_BAD_REQUEST)
 
+        # commit video to storage
+        default_storage.delete(video_file.name)
+        file_name = default_storage.save(video_file.name, video_file)
+        file_h = default_storage.open(file_name)
+
+        # convert video to flac
+        if not mp4_to_flac(str(file_h), flac_file):
+            default_storage.delete(video_file.name)
+            return Response({
+                'status': 'fail',
+                'detail': 'failed to convert video to flac'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # get the flac file
+        flac_h = default_storage.open(flac_file)
+        
+        google_api.upload_blob(google_api.BUCKET_NAME,
+                               str(flac_h), google_api.DST_BLOB_NAME)
+
+        time.sleep(5)
+
+        transcription = google_api.transcribe_gcs(google_api.GCS_URI)
+
+        parsed_json= google_api.parse_response(transcription)
+
+        print(parsed_json)
+        
+        # cleanup
+        default_storage.delete(video_file.name)
+        default_storage.delete(str(flac_h))
+        
         return Response({
             'status': 'success',
         }, status=status.HTTP_200_OK)
@@ -50,21 +84,25 @@ class UploadFlac(APIView):
     parser_classes = [FileUploadParser]
 
     def post(self, request, format=None):
-        up_file1 = request.FILES['file']
+        up_file1 = request.data['file']
 
         # up_file2 = request.data['file']
         # save to default storage
 
         default_storage.delete(up_file1.name)
         file_name = default_storage.save(up_file1.name, up_file1)
-        file = default_storage.open(file_name)
+        file_h = default_storage.open(file_name)
+
         google_api.upload_blob(google_api.BUCKET_NAME,
-                               str(file), google_api.DST_BLOB_NAME)
+                               str(file_h), google_api.DST_BLOB_NAME)
+
+        time.sleep(5)
 
         transcription = google_api.transcribe_gcs(google_api.GCS_URI)
-        
-        print(google_api.parse_response(transcription))
-        
+
+        parsed_json = google_api.parse_response(transcription)
+        print(parsed_json)
+
         # cleanup
         default_storage.delete(up_file1.name)
 
